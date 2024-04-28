@@ -1,0 +1,403 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title> 
+    <link rel="icon" type="jpeg" href="logo.jpeg" class="favicon">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: visible;
+            background-color:transparent;
+            height: 0px;
+            overflow:visible;
+            justify-content: space-evenly;
+        }
+        li {
+            float: right;
+        }
+        li a {
+            display: block;
+            color: none;
+            text-align: center;
+            padding: 5px 4px;
+            text-decoration: none;
+            background-color: transparent;
+            line-height: 12px;
+        }
+        li a:hover {
+            background-color: yellowgreen;
+            border-radius: 10px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+           
+        }
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 5px -1px;
+            background-color: transparent;
+            /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
+            z-index: 1000; 
+        }
+
+        header img {
+            max-height: 80px;
+            float: left;
+            margin-left: 20px;
+            margin-top: 20px;
+            border-radius: 100px;
+        
+            
+        }
+        
+        h1 {
+            text-align: center;
+            margin-top: 40px;
+            color: #333;
+            text-shadow: 5px 5px 15px yellowgreen;
+            font-family: cursive;
+            font-weight: bolder;
+        }
+        
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #ffffff9b;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: -60px;
+            
+               
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            padding-right: 10%;
+        }
+        
+        input[type="text"],
+        input[type="number"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform:translateX(-50%);
+            height: 35px;
+            width: 90px;
+            
+        }
+        
+        button[type="submit"]:hover {
+            background-color: yellowgreen ;
+
+
+        }
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+            
+        }
+        
+        li {
+            background-color: transparent;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 0px;
+            /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
+        }
+        h1{
+            text-shadow: 5px 5px 15px yellowgreen;
+        }
+        .form-container {
+            position: relative;
+            display:flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-top: 10px;
+            border-left-width: 30%;
+            border-right-width: 30%;
+            border-top: 30px;
+            padding: 0;
+            background-image: url('bg.jpg');
+            background-size:100% 100%;
+            background-position:center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            width: 100%;
+            height: 100vh;
+            
+        }
+        .submit-container {
+            text-align: center; /* Center-align content */
+            position: fixed;
+            bottom: 100px;
+            left: 15px;
+            right: 0;
+        }
+        .form-container{
+            opacity: 0;
+            transform: translateX(30px);
+            animation: moveup 0.9s linear forwards;
+        }
+        @keyframes moveup{
+            100%{
+                opacity: 1;
+                transform:translateX(0px) ;
+            }
+        }
+        .anim{
+            opacity: 0;
+            transform: translateY(30px);
+            animation: movedown 0.5s linear forwards;
+        }
+        @keyframes movedown{
+            100%{
+                opacity: 1;
+                transform: translateY(1px);
+            }
+        }
+        .about{
+            padding: 50px 12%;
+            font-size: 22px;
+        }
+        .row{
+            display: flex;
+            width: 100%;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 50px 0;
+
+        }
+        .text-col{
+            flex-basis: 50%;
+            margin-bottom: 20px;
+        }
+        .img-col{
+            flex-basis: 50%;
+            margin-bottom: 20px;
+        }
+        .img-col img{
+            display: block;
+            width: 90%;
+            margin: auto;
+
+        }
+        .contact{
+            padding: 50px 12%;
+            font-size: 22px;
+            background-color: grey;
+            background: url('ad.jpeg');
+            background-size: 100% 100%; 
+            color: white;
+            
+        }
+        .dev{
+            flex-basis: 50%;
+            margin-bottom: 20px;
+            text-align: right;
+            font-family:serif ;
+            font-size: larger;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.jpeg" alt="logo">
+        <ul>
+            
+            
+            <li><a href="login.html">Login</a></li>
+            <li><a href="#product">Product</a></li>
+            <li><a href="summary.html">Data</a></li>
+            <li><a href="#home">Home</a></li>
+        </ul>
+    </header>
+    <h1 class="anim">Harvest Metrics</h1>
+    <div class="form-container">
+        <div class="form">
+            <form id="harvestForm1">
+                <label for="crop1">Crop1</label>
+                <input type="text" id="crop1" required><br><br>
+            
+                <label for="quantity1">Quantity (in kilograms):</label>
+                <input type="number" id="quantity1" required><br><br>
+            
+                <label for="price1">Price per kilogram:</label>
+                <input type="number" id="price1" step="0.01" required><br><br>
+            
+                <label for="date1">Date:</label>
+                <input type="date" id="date1" required><br>
+                <button id="resetBtn" type="reset">reset</button>
+            
+            </form>
+        </div>
+        <br>
+        <div class="form">
+            <form id="harvestForm2">
+                <label for="crop2">Crop2</label>
+                <input type="text" id="crop2" required><br><br>
+            
+                <label for="quantity2">Quantity (in kilograms):</label>
+                <input type="number" id="quantity2" required><br><br>
+            
+                <label for="price2">Price per kilogram:</label>
+                <input type="number" id="price2" step="0.01" required><br><br>
+            
+                <label for="date2">Date:</label>
+                <input type="date" id="date2" required><br>
+                <button id="resetBtn" type="reset">reset</button>
+            
+            </form>
+        </div>
+        <br>
+        <div class="form">
+            <form id="harvestForm3">
+                <label for="crop3">Crop3</label>
+                <input type="text" id="crop3" required><br><br>
+                
+                <label for="quantity3">Quantity (in kilograms):</label>
+                <input type="number" id="quantity3" required><br><br>
+                
+                <label for="price3">Price per kilogram:</label>
+                <input type="number" id="price3" step="0.01" required><br><br>
+                
+                <label for="date3">Date:</label>
+                <input type="date" id="date3" required><br>
+                <button id="resetBtn" type="reset">reset</button>
+            </form>
+        </div>
+        <button id="submitBtn" type="submit" >Submit</button>
+    </div>
+    <div class="about">
+        <div class="row">
+            <div class="text-col">
+                <h2> About product</h2>
+                <p>“The purpose of developing the "Harvest revenue data entry management is to efficiently, accurately manage, and track the financial aspects of harvest activities in agriculture. Some of the primary purposes of such a system are Financial transparency, Cost tracking, Profit analysis, and Budget planning”.</p>
+            </div>
+            <div class="img-col">
+                <img src="sum2.jpg">
+            </div>
+        </div>
+        
+    </div>
+    <div class="contact">
+        <div class="row">
+            <div class="text-col">
+                <h3>Address:</h3>
+                <p>II-D, CSE Block, MRCET, Maisammaguda,
+                    Kompally,Hyderabad,500014 </p>
+            </div>
+            <div class="dev">
+                <h4>Developed by:</h4>
+                <h6>Group No: D-19</h6>
+                <p>22N31A05R3</p>
+                <p>22N31A05Q7</p>
+                <p>23N35A0524</p>
+            </div>
+            
+        </div>
+    </div>
+    
+    <ul id="harvestList"></ul>
+    
+    <script>
+        // Retrieve form elements
+        const form1 = document.getElementById('harvestForm1');
+        const form2 = document.getElementById('harvestForm2');
+        const form3 = document.getElementById('harvestForm3');
+        /*const harvestList = document.getElementById('harvestList');*/
+        const submitBtn = document.getElementById('submitBtn');
+
+
+        submitBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+
+   
+            const crop1 = form1.querySelector('#crop1').value;
+            const quantity1 = form1.querySelector('#quantity1').value;
+            const price1 = form1.querySelector('#price1').value;
+            const date1 = form1.querySelector('#date1').value;
+
+   
+            const crop2 = form2.querySelector('#crop2').value;
+            const quantity2 = form2.querySelector('#quantity2').value;
+            const price2 = form2.querySelector('#price2').value;
+            const date2 = form2.querySelector('#date2').value;
+
+    
+            const crop3 = form3.querySelector('#crop3').value;
+            const quantity3 = form3.querySelector('#quantity3').value;
+            const price3 = form3.querySelector('#price3').value;
+            const date3 = form3.querySelector('#date3').value;
+
+   
+            const harvestData1 = { crop: crop1, quantity: quantity1, price: price1, date: date1 };
+            const harvestData2 = { crop: crop2, quantity: quantity2, price: price2, date: date2 };
+            const harvestData3 = { crop: crop3, quantity: quantity3, price: price3, date: date3 };
+
+    
+            let harvests = JSON.parse(localStorage.getItem('harvests')) || [];
+
+    
+            harvests.push(harvestData1, harvestData2, harvestData3);
+
+   
+            localStorage.setItem('harvests', JSON.stringify(harvests));
+            window.location.href = 'summary.html';
+    
+             displayHarvests();
+
+    
+            form1.reset();
+            form2.reset();
+            form3.reset();
+        });
+
+
+        function displayHarvests() {
+            harvestList.innerHTML = ''; 
+            const harvests = JSON.parse(localStorage.getItem('harvests')) || [];
+    
+            harvests.forEach(harvest => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `<strong>${harvest.crop}</strong> - ${harvest.quantity} kg, ₹${harvest.price} per kg, harvested on ${harvest.date}`;
+            
+                harvestList.appendChild(listItem);
+            });
+        }
+
+        
+
+    </script>
+</body>
+</html>
