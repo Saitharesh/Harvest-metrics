@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="jpeg" href="logo.jpeg" class="favicon">
-
     <title>Harvest Data Summary</title>
     <style>
         ul {
@@ -66,18 +65,11 @@
         .total {
             font-weight: bold;
         }
-        canvas {
-            display: block;
-            margin: 20px auto;
-            max-width: 400px;
-            height: auto;
-        }
     </style>
 </head>
 <body>
     <h1>Harvest Data Summary</h1>
     <header>
-       
         <img src="logo.jpeg" alt="logo">
         <ul>
             <li><a href="login.html">Login</a></li>
@@ -85,7 +77,6 @@
             <li><a href="summary.html">Data</a></li>
             <li><a href="home.html">Home</a></li>
         </ul>
-   
     </header>
     <div id="temporaryDisplay"></div>
     <label for="sortSelect">Sort by:</label>
@@ -94,12 +85,9 @@
         <option value="month">Month</option>
         <option value="date">Crop</option>
     </select>
-
     <label for="filterInput">Filter by crop:</label>
     <input type="text" id="filterInput">
-
-
-    <table id=" havestTable">
+    <table id="harvestTable">
         <thead>
             <tr>
                 <th>Serial No</th>
@@ -108,7 +96,6 @@
                 <th>Quantity (kg)</th>
                 <th>Price per kg (₹)</th>
                 <th>Total Price (₹)</th>
-                <th>Profit Percentage</th>
             </tr>
         </thead>
         <tbody id="harvestTableBody"></tbody>
@@ -118,29 +105,19 @@
                 <td id="totalQuantity"></td>
                 <td></td>
                 <td id="totalPrice"></td>
-                <td></td>
             </tr>
         </tfoot>
     </table>
-    
-
-    <canvas id="harvestPieChart" width="400" height="400"></canvas>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         // Function to retrieve harvested data from local storage
         function retrieveHarvestData() {
             return JSON.parse(localStorage.getItem('harvests')) || [];
         }
-       
-        function filterData(data,filterBy){
-            return data.filter(iten=>item.crop.toLowwerCase())
-        }
 
         // Retrieve harvested data from local storage
         const harvests = retrieveHarvestData();
 
-        // Sort harvested data by month
+        // Sort harvested data by date
         harvests.sort((a, b) => {
             return new Date(a.date) - new Date(b.date);
         });
@@ -153,7 +130,6 @@
         harvests.forEach((harvest, index) => {
             const row = document.createElement('tr');
             const harvestPrice = parseFloat(harvest.quantity) * parseFloat(harvest.price);
-            const profitPercentage = ((harvestPrice - parseFloat(harvest.quantity) * parseFloat(harvest.price)) / (parseFloat(harvest.quantity) * parseFloat(harvest.price)) * 100).toFixed(2);
             row.innerHTML = `
                 <td>${index+1}</td>
                 <td>${harvest.date}</td>
@@ -161,7 +137,6 @@
                 <td>${harvest.quantity}</td>
                 <td>${harvest.price}</td>
                 <td>${harvestPrice.toFixed(2)}</td>
-                <td>${profitPercentage}%</td>
             `;
             tbody.appendChild(row);
 
@@ -173,35 +148,6 @@
         // Display total quantity and total price
         document.getElementById('totalQuantity').textContent = totalQuantity.toFixed(2) + ' kg';
         document.getElementById('totalPrice').textContent = '₹ ' + totalPrice.toFixed(2);
-
-        // Calculate quantities for each crop
-        const cropQuantities = {};
-        harvests.forEach(harvest => {
-            cropQuantities[harvest.crop] = (cropQuantities[harvest.crop] || 0) + parseFloat(harvest.quantity);
-        });
-
-        // Create data for pie chart
-        const pieData = {
-            labels: Object.keys(cropQuantities),
-            datasets: [{
-                data: Object.values(cropQuantities),
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.7)',
-                    'rgba(54, 162, 235, 0.7)',
-                    'rgba(255, 206, 86, 0.7)',
-                    'rgba(75, 192, 192, 0.7)',
-                    'rgba(153, 102, 255, 0.7)',
-                    'rgba(255, 159, 64, 0.7)'
-                ]
-            }]
-        };
-
-        // Create pie chart
-        const ctx = document.getElementById('harvestPieChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'pie',
-            data: pieData
-        });
     </script>
 </body>
 </html>
